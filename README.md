@@ -14,5 +14,5 @@
 
 ## Tecnologías utilizadas
 * **Lenguaje:** Java 
-* **Herramientas:** Eclipse / Visual Studio Code
+* **Herramientas:** Eclipse 
 * **Entrada de datos:** Clase `Scanner` de Java
