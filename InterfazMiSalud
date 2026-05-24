@@ -1,0 +1,112 @@
+package ar.jime.misalud;
+
+import java.util.Scanner;
+
+import ar.jime.misalud.dominio.DominioMiSalud;
+
+public class MiSalud {
+
+	public static void main(String[] args) {
+
+		Scanner teclado = new Scanner(System.in);
+
+		System.out.println("----- BIENVENIDO A MI SALUD -----");
+
+		System.out.println("-- Ingrese su nombre: --");
+		String nombre = teclado.next();
+		System.out.println("-- Ingrese su apellido: --");
+		String apellido = teclado.next();
+
+		DominioMiSalud paciente1 = new DominioMiSalud(nombre, apellido, 0, 0, 0, 0, 0, 0, 0);
+		System.out.println("\n¡Bienvenido, " + paciente1.getNombre() + " " + paciente1.getApellido() + "!");
+
+		System.out.println("\nIngrese su año de nacimiento:");
+		int anioDeNacimiento = teclado.nextInt();
+		paciente1.setAnioDeNacimiento(anioDeNacimiento);
+		System.out.println("\nIngrese su DNI: ");
+		int dni = teclado.nextInt();
+		paciente1.setDNI(dni);
+
+		int opcion;
+
+		do {
+			System.out.println("\n== Menú ==");
+			System.out.println("1 - Datos del paciente.");
+			System.out.println("2 - Presión Arterial");
+			System.out.println("3 - Glucemia");
+			System.out.println("4 - Frecuencia cardíaca");
+			System.out.println("5 - Frecuencia respiratoria");
+			System.out.println("6 - Resumen del paciente ");
+			System.out.println("9 - Salir del programa");
+			System.out.print("Elija una opción: ");
+
+			opcion = teclado.nextInt();
+			switch (opcion) {
+			case 1:
+				System.out.println("\n--- DATOS DEL PACIENTE ---");
+				System.out.println("Paciente: " + paciente1.getApellido() + ", " + paciente1.getNombre());
+				System.out.println("DNI: " + paciente1.getDni());
+				System.out.println("Edad: " + paciente1.calcularEdad() + " años.");
+				break;
+
+			case 2:
+				System.out.println("\n--- CONTROL DE PRESIÓN ARTERIAL ---");
+				System.out.print("Ingrese Presión Sistólica: ");
+				int sis = teclado.nextInt();
+				System.out.print("Ingrese Presión Diastólica: ");
+				int dias = teclado.nextInt();
+
+				paciente1.setPresionSistolica(sis);
+				paciente1.setPresionDiastolica(dias);
+
+				System.out.println("Resultado: " + paciente1.analizarPresionArterial());
+				break;
+
+			case 3:
+				System.out.println("\n--- CONTROL DE GLUCEMIA ---");
+				System.out.print("Ingrese el valor de Glucemia Capilar (mg/dl): ");
+				int glu = teclado.nextInt();
+				paciente1.setGlucemiaCapilar(glu);
+				System.out.println("Resultado: " + paciente1.evaluarGlucemiaCapilar());
+				break;
+
+			case 4:
+				System.out.println("\n--- CONTROL DE FRECUENCIA CARDÍACA ---");
+				System.out.print("Ingrese Frecuencia Cardíaca (lpm): ");
+				int fc = teclado.nextInt();
+				paciente1.setFrecuenciaCardiaca(fc);
+				System.out.println("Resultado: " + paciente1.evaluarFrecuenciaCardiaca());
+				break;
+
+			case 5:
+				System.out.println("\n--- CONTROL DE FRECUENCIA RESPIRATORIA ---");
+				System.out.print("Ingrese Frecuencia Respiratoria (rpm): ");
+				int fr = teclado.nextInt();
+				paciente1.setFrecuenciaRespiratoria(fr);
+				System.out.println("Resultado: " + paciente1.evaluarFrecuenciaRespiratoria());
+				break;
+			case 6:
+				System.out.println("\n================================================");
+				System.out.println("           RESUMEN CLÍNICO DEL PACIENTE         ");
+				System.out.println("================================================");
+
+				System.out.println(paciente1);
+
+				System.out.println("================================================");
+				break;
+
+			case 9:
+				System.out.println("\n¡Gracias por usar Mi Salud! Saliendo del sistema...");
+				break;
+
+			default:
+				System.out.println("\n Opción no válida. Intente de nuevo.");
+				break;
+			}
+
+		} while (opcion != 9);
+
+		teclado.close();
+	}
+
+}
