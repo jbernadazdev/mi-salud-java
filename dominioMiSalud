@@ -1,0 +1,158 @@
+package ar.jime.misalud.dominio;
+
+public class DominioMiSalud {
+
+	// atributos
+	private String nombre;
+	private String apellido;
+	private int dni;
+	private int anioDeNacimiento; 
+	private static final int ANIOACTUAL = 2026;
+	private int presionSistolica;
+	private int presionDiastolica;
+	private int glucemiaCapilar;
+	private int frecuenciaCardiaca;
+	private int frecuenciaRespiratoria;
+
+	// Constructor 
+	public DominioMiSalud(String nombre, String apellido, int dni, int anioDeNacimiento, int presionSistolica,
+			int presionDiastolica, int glucemiaCapilar, int frecuenciaCardiaca, int frecuenciaRespiratoria) {
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.dni = dni;
+		this.anioDeNacimiento = anioDeNacimiento;
+		this.presionSistolica = presionSistolica;
+		this.presionDiastolica = presionDiastolica;
+		this.glucemiaCapilar = glucemiaCapilar;
+		this.frecuenciaCardiaca = frecuenciaCardiaca;
+		this.frecuenciaRespiratoria = frecuenciaRespiratoria;
+	}
+
+	// Métodos de Acceso (Setters)
+	public void setNombre(String nombre) {
+		this.nombre = nombre.toUpperCase();
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido.toUpperCase();
+	}
+
+	public void setDNI(int dni) {
+		this.dni = dni;
+	}
+
+	public void setAnioDeNacimiento(int anioDeNacimiento) {
+		this.anioDeNacimiento = anioDeNacimiento;
+	}
+
+	public void setPresionSistolica(int presionSistolica) {
+		this.presionSistolica = presionSistolica;
+	}
+
+	public void setPresionDiastolica(int presionDiastolica) {
+		this.presionDiastolica = presionDiastolica;
+	}
+
+	public void setGlucemiaCapilar(int glucemiaCapilar) {
+		this.glucemiaCapilar = glucemiaCapilar;
+	}
+
+	public void setFrecuenciaCardiaca(int frecuenciaCardiaca) {
+		this.frecuenciaCardiaca = frecuenciaCardiaca;
+	}
+
+	public void setFrecuenciaRespiratoria(int frecuenciaRespiratoria) {
+		this.frecuenciaRespiratoria = frecuenciaRespiratoria;
+	}
+
+	// Métodos de Acceso (Getters)
+	public String getNombre() {
+		return this.nombre;
+	}
+
+	public String getApellido() {
+		return this.apellido;
+	}
+
+	public int getDni() {
+		return this.dni;
+	}
+
+	public int getAnioDeNacimiento() {
+		return this.anioDeNacimiento;
+	}
+
+	public int getPresionSistolica() {
+		return this.presionSistolica;
+	}
+
+	public int getPresionDiastolica() {
+		return this.presionDiastolica;
+	}
+
+	public int getGlucemia() {
+		return this.glucemiaCapilar;
+	}
+
+	public int getFrecuenciaCardiaca() {
+		return this.frecuenciaCardiaca;
+	}
+
+	public int getFrecuenciaRespiratoria() {
+		return this.frecuenciaRespiratoria;
+	}
+
+	// Métodos de comportamiento / lógicos
+	public int calcularEdad() {
+		return ANIOACTUAL - this.anioDeNacimiento;
+	}
+
+	public String analizarPresionArterial() {
+		if (presionSistolica >= 140 || presionDiastolica >= 90) {
+			return "Alerta: Presión arterial alta (Hipertensión). Se recomienda consultar a un médico.";
+		} else if (presionSistolica < 90 || presionDiastolica < 60) {
+			return "Aviso: Presión arterial baja (Hipotensión).";
+		} else {
+			return "Presión arterial normal.";
+		}
+	}
+
+	public String evaluarFrecuenciaCardiaca() {
+		if (this.frecuenciaCardiaca < 60) {
+			return "Bradicardia (Frecuencia cardíaca baja). Si no sos atleta, consultá a tu médico.";
+		} else if (this.frecuenciaCardiaca <= 100) {
+			return "Normocardia (Frecuencia cardíaca normal en reposo).";
+		} else {
+			return "Taquicardia (Frecuencia cardíaca alta). Evitá estimulantes y controlá en reposo.";
+		}
+	}
+
+	public String evaluarFrecuenciaRespiratoria() {
+		if (this.frecuenciaRespiratoria < 12) {
+			return "Bradipnea (Frecuencia respiratoria baja).";
+		} else if (this.frecuenciaRespiratoria <= 20) {
+			return "Eupnea (Frecuencia respiratoria normal).";
+		} else {
+			return "Taquicardia (Frecuencia respiratoria alta).";
+		}
+	}
+
+	public String evaluarGlucemiaCapilar() {
+		if (this.glucemiaCapilar < 70) {
+			return "Alerta: Hipoglucemia (Nivel de azúcar peligrosamente bajo). Consumir algo dulce de inmediato.";
+		} else if (this.glucemiaCapilar < 100) {
+			return "Glucemia Normal (En ayunas).";
+		} else if (this.glucemiaCapilar <= 125) {
+			return "Aviso: Prediabetes (Glucemia alterada en ayunas). Se recomienda mejorar la dieta y consultar al médico.";
+		} else {
+			return "Alerta: Glucemia Alta (Posible indicador de Diabetes). Requiere consulta médica urgente para confirmación.";
+		}
+	}
+
+	public String toString() {
+
+		return "Gestión de Mi Salud. Nombre: " + nombre + ", Apellido: " + apellido + ", DNI: " + dni + ", Edad: " + calcularEdad() + " años"
+				+ "\nSignos Vitales - Presión Arterial: " + presionSistolica + "/" + presionDiastolica + " mmHg, "
+				+ glucemiaCapilar + " mg/dl, FC: " + frecuenciaCardiaca + " lpm, FR: " + frecuenciaRespiratoria + " rpm.";
+	}
+}
